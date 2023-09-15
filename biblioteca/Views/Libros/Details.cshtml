@@ -1,0 +1,90 @@
+﻿@model biblioteca.Models.Libros
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Libros</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autores.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autores.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias.NombreCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias.NombreCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editoriales.NombreEditorial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editoriales.NombreEditorial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lenguajes.NombreLenguaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lenguajes.NombreLenguaje)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LibroID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<biblioteca.Models.Ventas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDevolucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRealDevolucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Multa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clientes.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.NombreUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDevolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRealDevolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Multa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clientes.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.NombreUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VentaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VentaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VentaID })
+        </td>
+    </tr>
+}
+
+</table>

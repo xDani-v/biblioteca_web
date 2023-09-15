@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotecaRentaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Autores">
+    <Key>
+      <PropertyRef Name="AutorID" />
+    </Key>
+    <Property Name="AutorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="CategoriaID" />
+    </Key>
+    <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCategoria" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClienteID" />
+    </Key>
+    <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Editoriales">
+    <Key>
+      <PropertyRef Name="EditorialID" />
+    </Key>
+    <Property Name="EditorialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreEditorial" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Lenguajes">
+    <Key>
+      <PropertyRef Name="LenguajeID" />
+    </Key>
+    <Property Name="LenguajeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreLenguaje" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="LibroID" />
+    </Key>
+    <Property Name="LibroID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
+    <Property Name="ISBN" Type="nvarchar" MaxLength="20" />
+    <Property Name="CategoriaID" Type="int" />
+    <Property Name="AutorID" Type="int" />
+    <Property Name="EditorialID" Type="int" />
+    <Property Name="LenguajeID" Type="int" />
+    <Property Name="Stock" Type="int" />
+    <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Precio" Type="money" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contraseña" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rol" Type="nvarchar" MaxLength="20" />
+    <Property Name="FechaCreacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Venta_Detalle">
+    <Key>
+      <PropertyRef Name="VentaDetalleID" />
+    </Key>
+    <Property Name="VentaDetalleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VentaID" Type="int" />
+    <Property Name="LibroID" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Precio" Type="money" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="VentaID" />
+    </Key>
+    <Property Name="VentaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteID" Type="int" />
+    <Property Name="UsuarioID" Type="int" />
+    <Property Name="FechaRenta" Type="datetime" />
+    <Property Name="FechaDevolucion" Type="datetime" />
+    <Property Name="Total" Type="money" />
+    <Property Name="FechaRealDevolucion" Type="datetime" />
+    <Property Name="Multa" Type="money" />
+  </EntityType>
+  <Association Name="FK__Libros__AutorID__440B1D61">
+    <End Role="Autores" Type="Self.Autores" Multiplicity="0..1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autores">
+        <PropertyRef Name="AutorID" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="AutorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Libros__Categori__4316F928">
+    <End Role="Categorias" Type="Self.Categorias" Multiplicity="0..1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="CategoriaID" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="CategoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Libros__Editoria__44FF419A">
+    <End Role="Editoriales" Type="Self.Editoriales" Multiplicity="0..1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editoriales">
+        <PropertyRef Name="EditorialID" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="EditorialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Libros__Lenguaje__45F365D3">
+    <End Role="Lenguajes" Type="Self.Lenguajes" Multiplicity="0..1" />
+    <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lenguajes">
+        <PropertyRef Name="LenguajeID" />
+      </Principal>
+      <Dependent Role="Libros">
+        <PropertyRef Name="LenguajeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__ClienteID__48CFD27E">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="ClienteID" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__UsuarioID__49C3F6B7">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Ventas">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Det__Libro__4D94879B">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="LibroID" />
+      </Principal>
+      <Dependent Role="Venta_Detalle">
+        <PropertyRef Name="LibroID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Det__Venta__4CA06362">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="Venta_Detalle" Type="Self.Venta_Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="VentaID" />
+      </Principal>
+      <Dependent Role="Venta_Detalle">
+        <PropertyRef Name="VentaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BibliotecaRentaModelStoreContainer">
+    <EntitySet Name="Autores" EntityType="Self.Autores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Editoriales" EntityType="Self.Editoriales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lenguajes" EntityType="Self.Lenguajes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Detalle" EntityType="Self.Venta_Detalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Libros__AutorID__440B1D61" Association="Self.FK__Libros__AutorID__440B1D61">
+      <End Role="Autores" EntitySet="Autores" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Libros__Categori__4316F928" Association="Self.FK__Libros__Categori__4316F928">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Libros__Editoria__44FF419A" Association="Self.FK__Libros__Editoria__44FF419A">
+      <End Role="Editoriales" EntitySet="Editoriales" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Libros__Lenguaje__45F365D3" Association="Self.FK__Libros__Lenguaje__45F365D3">
+      <End Role="Lenguajes" EntitySet="Lenguajes" />
+      <End Role="Libros" EntitySet="Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__ClienteID__48CFD27E" Association="Self.FK__Venta__ClienteID__48CFD27E">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__UsuarioID__49C3F6B7" Association="Self.FK__Venta__UsuarioID__49C3F6B7">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Det__Libro__4D94879B" Association="Self.FK__Venta_Det__Libro__4D94879B">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Det__Venta__4CA06362" Association="Self.FK__Venta_Det__Venta__4CA06362">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Venta_Detalle" EntitySet="Venta_Detalle" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
